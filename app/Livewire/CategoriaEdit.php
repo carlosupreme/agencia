@@ -15,7 +15,6 @@ class CategoriaEdit extends Component
 
     public $nombre;
 
-
     #[On('editCategoria')]
     public function editCategoria($id): void
     {

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('categoria_id')->constrained();
             $table->string('modelo');
             $table->string('marca');
-            $table->string('placa');
+            $table->string('placas');
             $table->timestamps();
         });
     }

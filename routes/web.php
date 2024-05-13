@@ -16,4 +16,5 @@ Route::middleware([
     })->name('dashboard');
 
     Route::get('/categorias', static fn() => view('categoria.index'))->name('categoria.index');
+    Route::get('/vehiculos', static fn() => view('vehiculo.index'))->name('vehiculo.index');
 });
