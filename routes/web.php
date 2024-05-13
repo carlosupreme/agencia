@@ -14,4 +14,6 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('/categorias', static fn() => view('categoria.index'))->name('categoria.index');
 });

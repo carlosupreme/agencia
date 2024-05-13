@@ -18,7 +18,7 @@
     @livewireStyles
 </head>
 <body
-    x-data="{ page: 'ecommerce', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
+    x-data="{ page: 'dashboard', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
     x-init="
          darkMode = JSON.parse(localStorage.getItem('darkMode'));
          $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
@@ -44,7 +44,10 @@
 
         <!-- ===== Main Content Start ===== -->
         <main>
-            {{ $slot }}
+            <x-banner/>
+            <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+                {{ $slot }}
+            </div>
         </main>
         <!-- ===== Main Content End ===== -->
     </div>
