@@ -8,7 +8,6 @@ use Livewire\Component;
 
 class CategoriaCreate extends Component
 {
-
     #[Validate('required|unique:categorias,nombre')]
     public $nombre;
 

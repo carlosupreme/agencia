@@ -17,8 +17,6 @@ class CategoriasIndex extends Component
     {
         Categoria::destroy($id);
         $this->dispatch('actionCompleted');
-
-        return redirect()->route('categoria.index')->with('flash.banner', 'Usuario eliminado');
     }
 
     public function confirmDelete($id)
@@ -26,10 +24,11 @@ class CategoriasIndex extends Component
         $this->dispatch('selectItem', $id);
     }
 
+    #[On('actionCompleted')]
+    #[On('categoriaCreated')]
     public function render()
     {
-        $categorias = Categoria::
-        where('nombre', 'LIKE', "%{$this->search}%")
+        $categorias = Categoria::where('nombre', 'LIKE', "%{$this->search}%")
             ->withCount('vehiculos')
             ->latest('id')
             ->get();

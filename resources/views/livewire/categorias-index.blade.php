@@ -1,7 +1,8 @@
 <div class="flex flex-col gap-2">
     <div class="flex w-full items-center gap-3">
         <x-input
-            type="text"
+            wire:model.live="search"
+            type="search"
             class="w-full"
             placeholder="Buscar categoria"
         />
@@ -43,6 +44,7 @@
                                 class="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11"
                             >
                                 <h5 class="font-medium text-black dark:text-white">{{$categoria->nombre}}</h5>
+                                <p class="text-xs text-graydark dark:text-gray ">{{$categoria->id}}</p>
                             </td>
                             <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                                 <p class="text-black dark:text-white">{{$categoria->created_at->diffForHumans()}}</p>
@@ -58,7 +60,7 @@
                                     <button class="hover:text-primary">
 
                                     </button>
-                                    <button class="hover:text-primary">
+                                    <button class="hover:text-primary" wire:click="confirmDelete({{$categoria->id}})">
                                         <x-far-trash-can class="fill-current h-6 w-7"/>
                                     </button>
                                 </div>
@@ -79,6 +81,6 @@
         'action' => 'deleteCategoria',
         'actionName' => 'Eliminar',
         'title' => 'Eliminar categoria',
-        'content' => '¿Está seguro de que desea eliminar esta categoria? <small>Esta acción es irreversible</small>',
+        'content' => '¿Está seguro de que desea eliminar esta categoria? <b>Esta acción es irreversible</b>',
         ])
 </div>
