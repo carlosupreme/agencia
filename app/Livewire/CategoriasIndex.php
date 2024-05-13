@@ -12,6 +12,11 @@ class CategoriasIndex extends Component
     public $search;
     public $queryString = ['search' => ['except' => '', 'as' => 's']];
 
+    public function edit($categoriaId)
+    {
+        $this->dispatch('editCategoria', $categoriaId);
+    }
+
     #[On('deleteCategoria')]
     public function deleteCategoria($id)
     {
@@ -26,6 +31,7 @@ class CategoriasIndex extends Component
 
     #[On('actionCompleted')]
     #[On('categoriaCreated')]
+    #[On('categoriaUpdated')]
     public function render()
     {
         $categorias = Categoria::where('nombre', 'LIKE', "%{$this->search}%")

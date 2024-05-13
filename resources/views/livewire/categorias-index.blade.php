@@ -44,24 +44,34 @@
                                 class="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11"
                             >
                                 <h5 class="font-medium text-black dark:text-white">{{$categoria->nombre}}</h5>
-                                <p class="text-xs text-graydark dark:text-gray ">{{$categoria->id}}</p>
+                                <p class="text-xs text-graydark dark:text-gray ">ID:{{$categoria->id}}</p>
                             </td>
                             <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-                                <p class="text-black dark:text-white">{{$categoria->created_at->diffForHumans()}}</p>
+                                <p class="text-black dark:text-white flex items-center gap-2">
+                                    <x-far-clock class="h-3 w-3"/>
+                                    <span class="first-letter:uppercase">
+                                    {{$categoria->created_at->diffForHumans()}}
+                                    </span>
+                                </p>
                             </td>
-                            <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-                                <p class="text-black dark:text-white">{{$categoria->vehiculos_count}}</p>
+                            <td class="text-center border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+                                <p class="text-center text-black dark:text-white flex items-center gap-2">
+                                    <x-fas-car class="h-3 w-3"/>
+                                    <span class="first-letter:uppercase">
+                                    {{$categoria->vehiculos_count}}
+                                    </span>
+                                </p>
                             </td>
                             <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                                 <div class="flex items-center space-x-3.5">
-                                    <button class="hover:text-primary">
 
-                                    </button>
-                                    <button class="hover:text-primary">
-
+                                    <button class="hover:text-primary"
+                                            wire:click="edit({{ $categoria->id }})"
+                                    >
+                                        <x-far-pen-to-square class="fill-current h-5 w-5"/>
                                     </button>
                                     <button class="hover:text-primary" wire:click="confirmDelete({{$categoria->id}})">
-                                        <x-far-trash-can class="fill-current h-6 w-7"/>
+                                        <x-far-trash-can class="fill-current h-5 w-5"/>
                                     </button>
                                 </div>
                             </td>
@@ -76,6 +86,9 @@
             @endif
         </div>
     </div>
+
+    @livewire('categoria-edit')
+
     @livewire('delete-modal', [
         'modalId' => 'deleteCategoriaModal',
         'action' => 'deleteCategoria',

@@ -25,7 +25,7 @@ class CategoriaCreate extends Component
         $this->reset();
     }
 
-    public function resetValues()
+    public function resetValues():void
     {
         $this->reset();
         $this->resetValidation();
