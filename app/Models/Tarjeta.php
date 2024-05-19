@@ -15,4 +15,9 @@ class Tarjeta extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function alquileresPagados()
+    {
+        return $this->hasMany(Alquiler::class);
+    }
 }

@@ -12,10 +12,11 @@ return new class extends Migration {
     {
         Schema::create('alquilers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('vehiculo_id')->constrained();
-            $table->date('fecha');
-            $table->string('pago');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('vehiculo_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('tarjeta_id')->nullable()->constrained()->nullOnDelete();
+            $table->date('fecha_inicio');
+            $table->date('fecha_fin');
             $table->decimal('monto');
             $table->timestamps();
         });

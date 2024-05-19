@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,9 +12,13 @@ return new class extends Migration
     {
         Schema::create('tarjetas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->string('numero');
-            $table->string('nombre');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->string('numero',16);
+            $table->string('titular');
+            $table->string('banco');
+            $table->enum('tipo', ['debito', 'credito']);
+            $table->date('vencimiento');
+            $table->string('cvv', 3);
             $table->timestamps();
         });
     }
