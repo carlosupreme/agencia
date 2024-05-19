@@ -49,14 +49,13 @@
 
             @if($foto)
                 <div class="col-span-2 md:col-span-1">
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-2"
-                           for="color">Foto actual</label>
+                    <span class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-2">Foto actual</span>
                     <img src="{{$foto}}" alt="Foto" class="h-32 object-contain rounded-lg"/>
                 </div>
             @endif
 
             <div class="col-span-2 md:col-span-1">
-                <label for="dropzone-file"
+                <label for="1-file"
                        class="flex flex-col items-center justify-center h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-black hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                     <div class="flex flex-col items-center justify-center pt-5 pb-6">
                         <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -69,12 +68,13 @@
                             o arrastra el archivo</p>
                         <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG </p>
                     </div>
-                    <input id="dropzone-file" type="file" class="hidden" wire:model.live="newFoto"/>
+                    <input id="1-file" type="file" class="hidden" wire:model.live="newFoto"/>
                 </label>
             </div>
 
             @if($newFoto)
                 <div class="col-span-2 md:col-span-1">
+                    <span class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-2">Nueva Foto</span>
                     <img src="{{$newFoto->temporaryUrl()}}" alt="Foto" class="h-32 object-contain rounded-lg"/>
                 </div>
             @endif

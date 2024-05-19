@@ -29,13 +29,14 @@ class VehiculoCreate extends Component
     #[Validate('image|nullable')]
     public $foto;
 
-    public $categorias;
+    public $categorias = [];
 
     public $open = false;
 
-    public function mount()
+    public function beVisible()
     {
         $this->categorias = Categoria::select('id', 'nombre')->get();
+        $this->open = true;
     }
 
     public function store()

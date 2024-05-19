@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Vehiculo;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\Attributes\On;
 
@@ -19,7 +20,12 @@ class VehiculoIndex extends Component
     #[On('deleteVehiculo')]
     public function deleteVehiculo($id)
     {
-        Vehiculo::destroy($id);
+        $v = Vehiculo::findOrFail($id);
+
+        if ($v->foto) Storage::delete(str_replace("/storage/", "", $v->foto));
+
+        $v->delete();
+
         $this->dispatch('actionCompleted');
     }
 

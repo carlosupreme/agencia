@@ -16,7 +16,7 @@ class VehiculoEdit extends Component
 
     public Vehiculo $vehiculo;
     public $open = false;
-    public $categorias;
+    public $categorias = [];
 
     #[Validate('required')]
     public $marca = '';
@@ -34,14 +34,10 @@ class VehiculoEdit extends Component
     #[Validate('image|nullable')]
     public $newFoto;
 
-    public function mount()
-    {
-        $this->categorias = Categoria::select('id', 'nombre')->get();
-    }
-
     #[On('editVehiculo')]
     public function editVehiculo($vehiculoId)
     {
+        $this->categorias = Categoria::select('id', 'nombre')->get();
         $this->vehiculo = Vehiculo::findOrfail($vehiculoId);
         $this->marca = $this->vehiculo->marca;
         $this->modelo = $this->vehiculo->modelo;
@@ -56,7 +52,7 @@ class VehiculoEdit extends Component
         $this->validate();
 
         if ($this->newFoto && $this->vehiculo->foto) {
-            Storage::delete($this->vehiculo->foto);
+            Storage::delete(str_replace("/storage/", "", $this->vehiculo->foto));
         }
 
         $this->vehiculo->update([
@@ -64,7 +60,7 @@ class VehiculoEdit extends Component
             'modelo' => $this->modelo,
             'placas' => $this->placas,
             'categoria_id' => $this->categoria_id,
-            'foto' => $this->newFoto ? $this->newFoto->store('vehiculos') : $this->vehiculo->foto,
+            'foto' => $this->newFoto ? Storage::url($this->newFoto->store('vehiculos')) : $this->vehiculo->foto,
         ]);
 
         $this->dispatch('vehiculoUpdated');

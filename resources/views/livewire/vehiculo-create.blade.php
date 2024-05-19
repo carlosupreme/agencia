@@ -1,5 +1,5 @@
 <div class="min-w-fit">
-    <x-button wire:click="$set('open', true)"> Crear vehiculo</x-button>
+    <x-button wire:click="beVisible"> Crear vehiculo</x-button>
     <x-dialog-modal wire:model="open">
         <x-slot name="title">
             <h2><strong>Crear vehiculo</strong></h2>
