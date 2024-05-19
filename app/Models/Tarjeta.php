@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Tarjeta extends Model
 {
 
-    protected $fillable = ['user_id', 'numero', 'nombre'];
+    protected $fillable = ['user_id', 'numero', 'titular', 'banco', 'tipo', 'vencimiento', 'cvv'];
 
 
     public function user()

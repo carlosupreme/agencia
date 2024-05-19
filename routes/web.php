@@ -21,4 +21,6 @@ Route::middleware([
         Route::get('/usuarios', static fn() => view('usuario.index'))->name('usuario.index');
     });
 
+    Route::get('/tarjetas', static fn() => view('tarjeta.index'))->name('tarjeta.index');
+
 });

@@ -60,11 +60,11 @@
                     <li>
                         <a
                             class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
-                            href="calendar.html"
-                            @click="selected = (selected === 'Calendar' ? '':'Calendar')"
-                            :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Calendar') && (page === 'calendar') }"
+                            href="{{route('tarjeta.index')}}"
+                            @click="selected = (selected === 'tarjetas' ? '':'tarjetas')"
+                            :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'tarjetas') }"
                         >
-                            <x-far-id-card class="fill-current h-5 w-5"/>
+                            <x-far-credit-card class="fill-current h-5 w-5"/>
                             Mis tarjetas
                         </a>
                     </li>
