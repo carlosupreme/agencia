@@ -55,7 +55,7 @@
                 </div>
 
                 <a
-                    href="#"
+                    href="{{route('vehiculo.index')}}"
                     class="flex items-center gap-1 text-sm font-medium text-meta-5"
                 >
                     Ver más
@@ -86,7 +86,7 @@
                 </div>
 
                 <a
-                    href="#"
+                    href="{{route('usuario.index')}}"
                     class="flex items-center gap-1 text-sm font-medium text-meta-5"
                 >
                     Ver más

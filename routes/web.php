@@ -15,6 +15,10 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('/categorias', static fn() => view('categoria.index'))->name('categoria.index');
-    Route::get('/vehiculos', static fn() => view('vehiculo.index'))->name('vehiculo.index');
+    Route::middleware(['role:admin'])->group(function () {
+        Route::get('/categorias', static fn() => view('categoria.index'))->name('categoria.index');
+        Route::get('/vehiculos', static fn() => view('vehiculo.index'))->name('vehiculo.index');
+        Route::get('/usuarios', static fn() => view('usuario.index'))->name('usuario.index');
+    });
+
 });

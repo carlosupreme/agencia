@@ -70,7 +70,7 @@
                     </li>
                     <!-- Menu Item Tarjetas -->
 
-                    <!-- Menu Item Profile -->
+                    <!-- Menu Item alquiler -->
                     <li>
                         <a
                             class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
@@ -81,11 +81,13 @@
                         >
                             <x-fas-money-check-dollar class="fill-current h-5 w-5"/>
                             Alquileres
+
                         </a>
                     </li>
-                    <!-- Menu Item Profile -->
+                    <!-- Menu Item alquiler -->
 
-                    <!-- Menu Item Forms -->
+                    <!-- Menu Item autos -->
+                    @role('admin')
                     <li>
                         <a
                             class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
@@ -98,9 +100,9 @@
                         </a>
 
                     </li>
-                    <!-- Menu Item Forms -->
+                    <!-- Menu Item autos -->
 
-                    <!-- Menu Item Tables -->
+                    <!-- Menu Item categorias -->
                     <li>
                         <a
                             class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
@@ -109,27 +111,26 @@
                             :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'categorias') }"
                         >
                             <x-fas-tags class="fill-current h-5 w-5"/>
-
                             Categorias
                         </a>
                     </li>
-                    <!-- Menu Item Tables -->
+                    <!-- Menu Item categorias -->
 
-                    <!-- Menu Item Settings -->
+                    <!-- Usuarios -->
                     <li>
                         <a
                             class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
-                            href="settings.html"
-                            @click="selected = (selected === 'Settings' ? '':'Settings')"
-                            :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Settings') && (page === 'settings') }"
+                            href="{{route('usuario.index')}}"
+                            @click="selected = (selected === 'Usuarios' ? '':'Usuarios')"
+                            :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Usuarios') }"
                             :class="page === 'settings' && 'bg-graydark'"
                         >
                             <x-fas-user-friends class="fill-current h-5 w-5"/>
-
-                            Usuarios y roles
+                            Usuarios
                         </a>
                     </li>
-                    <!-- Menu Item Settings -->
+                    @endrole
+                    <!-- Usuarios -->
                 </ul>
             </div>
         </nav>
