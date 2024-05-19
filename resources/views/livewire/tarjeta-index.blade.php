@@ -13,7 +13,6 @@
                     <img class="w-14 h-14" src="https://i.imgur.com/bbPHJVe.png" alt="Bank Logo">
                 </div>
 
-
                 <p class="font-medium tracking-widest text-sm text-gray-800 dark:text-gray-200 first-letter:uppercase">{{$tarjeta->tipo}}</p>
 
                 <div class="flex justify-between mt-4">
