@@ -28,10 +28,6 @@ class TarjetaCreate extends Component
     #[Validate('required|numeric|digits:3')]
     public $cvv;
 
-    public function render()
-    {
-        return view('livewire.tarjeta-create');
-    }
 
     public function addCard()
     {
@@ -47,7 +43,12 @@ class TarjetaCreate extends Component
             'cvv' => $this->cvv,
         ]);
 
-        $this->reset();
         $this->dispatch('tarjetaCreated');
+        $this->reset();
+    }
+
+    public function render()
+    {
+        return view('livewire.tarjeta-create');
     }
 }

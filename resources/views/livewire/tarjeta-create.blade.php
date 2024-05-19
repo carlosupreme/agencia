@@ -28,7 +28,9 @@
                     <label class="text-neutral-800 dark:text-white font-bold text-sm mb-2 block">CVV:</label>
                     <x-input
                         wire:model="cvv"
-                        type="text"
+                        type="tel"
+                        inputmode="numeric"
+                        maxlength="3"
                         class="mb-4 h-10"
                         placeholder="000"
                     />
@@ -91,7 +93,7 @@
                     </div>
                 </div>
             </div>
-            <x-button wire:click="addCard" class="w-full">Agregar</x-button>
+            <x-button type="button" wire:click="addCard" class="w-full">Agregar</x-button>
         </div>
     </div>
 </div>
