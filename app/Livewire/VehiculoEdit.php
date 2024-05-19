@@ -27,6 +27,9 @@ class VehiculoEdit extends Component
     #[Validate('required')]
     public $placas = '';
 
+    #[Validate('required|numeric')]
+    public $precio_dia = '';
+
     #[Validate('required|exists:categorias,id')]
     public $categoria_id = '';
     public $foto;
@@ -42,6 +45,7 @@ class VehiculoEdit extends Component
         $this->marca = $this->vehiculo->marca;
         $this->modelo = $this->vehiculo->modelo;
         $this->placas = $this->vehiculo->placas;
+        $this->precio_dia = $this->vehiculo->precio_dia;
         $this->categoria_id = $this->vehiculo->categoria_id;
         $this->foto = $this->vehiculo->foto;
         $this->open = true;
@@ -59,6 +63,7 @@ class VehiculoEdit extends Component
             'marca' => $this->marca,
             'modelo' => $this->modelo,
             'placas' => $this->placas,
+            'precio_dia' => $this->precio_dia,
             'categoria_id' => $this->categoria_id,
             'foto' => $this->newFoto ? Storage::url($this->newFoto->store('vehiculos')) : $this->vehiculo->foto,
         ]);

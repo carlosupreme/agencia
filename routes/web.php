@@ -22,5 +22,5 @@ Route::middleware([
     });
 
     Route::get('/tarjetas', static fn() => view('tarjeta.index'))->name('tarjeta.index');
-
+    Route::get('/alquilar', static fn() => view('alquiler.index'))->name('alquiler.index');
 });

@@ -30,6 +30,11 @@
                         <th
                             class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white"
                         >
+                            Precio por día
+                        </th>
+                        <th
+                            class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white"
+                        >
                             Categoria
                         </th>
                         <th class="px-4 py-4 font-medium text-black dark:text-white">
@@ -56,6 +61,11 @@
                                     >
                                 @endif
 
+                            </td>
+                            <td class="text-center border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+                                <p class="text-center text-black dark:text-white flex items-center gap-2">
+                                    ${{$vehiculo->precio_dia}}
+                                </p>
                             </td>
                             <td class="text-center border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                                 <p class="text-center text-black dark:text-white flex items-center gap-2">

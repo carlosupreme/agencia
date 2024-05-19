@@ -30,6 +30,13 @@
 
                 <div class="col-span-2 md:col-span-1">
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-2"
+                           for="precio_dia">Precio al dia</label>
+                    <x-input class="w-full" wire:model="precio_dia" type="number" name="precio_dia" id="precio_dia"/>
+                    <x-input-error for="precio_dia"/>
+                </div>
+
+                <div class="col-span-2 md:col-span-1">
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-2"
                            for="categoria">Categoria</label>
                     <div class="flex flex-col gap-2">
                         <select

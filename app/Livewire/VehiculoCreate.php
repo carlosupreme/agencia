@@ -23,6 +23,9 @@ class VehiculoCreate extends Component
     #[Validate('required')]
     public $placas = '';
 
+    #[Validate('required|numeric')]
+    public $precio_dia = '';
+
     #[Validate('required|exists:categorias,id')]
     public $categoria_id = '';
 
@@ -47,6 +50,7 @@ class VehiculoCreate extends Component
             'marca' => $this->marca,
             'modelo' => $this->modelo,
             'placas' => $this->placas,
+            'precio_dia' => $this->precio_dia,
             'categoria_id' => $this->categoria_id,
             'foto' => $this->foto ? Storage::url($this->foto->store('vehiculos')) : null,
         ]);

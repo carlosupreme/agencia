@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('modelo');
             $table->string('marca');
             $table->string('placas');
+            $table->decimal('precio_dia');
             $table->timestamps();
         });
     }
