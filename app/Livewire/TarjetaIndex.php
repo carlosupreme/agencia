@@ -9,14 +9,6 @@ use Livewire\Component;
 
 class TarjetaIndex extends Component
 {
-
-    public $tarjetas;
-
-    public function mount()
-    {
-        $this->tarjetas = Auth::user()->tarjetas;
-    }
-
     public function delete($id)
     {
         Tarjeta::find($id)->delete();
@@ -27,6 +19,7 @@ class TarjetaIndex extends Component
     #[On('tarjetaCreated')]
     public function render()
     {
-        return view('livewire.tarjeta-index');
+        $tarjetas = Auth::user()->tarjetas;
+        return view('livewire.tarjeta-index', compact('tarjetas'));
     }
 }

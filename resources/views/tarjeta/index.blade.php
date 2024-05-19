@@ -18,7 +18,6 @@
     </div>
 
     @livewire('tarjeta-create')
-
     <h2 class="text-2xl font-bold mb-6 text-center">Tus tarjetas</h2>
     @livewire('tarjeta-index')
 
