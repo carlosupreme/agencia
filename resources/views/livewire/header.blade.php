@@ -41,18 +41,7 @@
 
         </div>
         <div class="hidden sm:block">
-            <label class="relative">
-                <div class="absolute left-0 top-1/2 -translate-y-1/2">
-                    <x-fas-search
-                        class="w-4 h-4 fill-body"/>
-                </div>
-
-                <input
-                    type="text"
-                    placeholder="Buscar..."
-                    class="w-full bg-transparent pl-9 pr-4  focus:drop-shadow-none focus:outline-none hover:outline-none border-0 xl:w-125"
-                />
-            </label>
+            
         </div>
 
         <div class="flex items-center gap-3 2xsm:gap-7">
