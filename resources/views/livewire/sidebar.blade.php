@@ -32,10 +32,7 @@
         class="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear"
     >
         <!-- Sidebar Menu -->
-        <nav
-            class="mt-5 px-4 py-4 lg:mt-9 lg:px-6"
-            x-data="{selected: $persist('Dashboard')}"
-        >
+        <nav class="mt-5 px-4 py-4 lg:mt-9 lg:px-6">
             <!-- Menu Group -->
             <div>
                 <h3 class="mb-4 ml-4 text-sm font-medium text-bodydark2">MENU</h3>
@@ -44,10 +41,11 @@
                     <!-- Menu Item Dashboard -->
                     <li>
                         <a
-                            class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
+                            @class([
+                                    'group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4',
+                                    'bg-graydark dark:bg-meta-4' => request()->routeIs('dashboard')
+                                ])
                             href="{{ route('dashboard') }}"
-                            @click="selected = (selected === 'Dashboard' ? '':'Dashboard')"
-                            :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Dashboard') }"
                         >
                             <x-fas-home class="fill-current h-5 w-5"/>
                             Dashboard
@@ -59,10 +57,11 @@
                     <!-- Menu Item Tarjetas -->
                     <li>
                         <a
-                            class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
+                        @class([
+                                    'group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4',
+                                    'bg-graydark dark:bg-meta-4' => request()->routeIs('tarjeta.index')
+                                ])
                             href="{{route('tarjeta.index')}}"
-                            @click="selected = (selected === 'tarjetas' ? '':'tarjetas')"
-                            :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'tarjetas') }"
                         >
                             <x-far-credit-card class="fill-current h-5 w-5"/>
                             Mis tarjetas
@@ -73,11 +72,11 @@
                     <!-- Menu Item alquiler -->
                     <li>
                         <a
-                            class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
-                            href="{{route('alquiler.index')}}"
-                            @click="selected = (selected === 'alquiler' ? '':'alquiler')"
-                            :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'alquiler')}"
-                            :class="page === 'alquiler' && 'bg-graydark'"
+                        href="{{route('alquiler.index')}}"
+                        @class([
+                                'group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4',
+                                'bg-graydark dark:bg-meta-4' => request()->routeIs('alquiler.index')
+                        ])
                         >
                             <x-fas-money-check-dollar class="fill-current h-5 w-5"/>
                             Alquilar
@@ -89,10 +88,11 @@
                     @role('admin')
                     <li>
                         <a
-                            class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
-                            href="{{route('vehiculo.index')}}"
-                            @click="selected = (selected === 'autos' ? '':'autos')"
-                            :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'autos') }"
+                        href="{{route('vehiculo.index')}}"
+                        @class([
+                            'group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4',
+                            'bg-graydark dark:bg-meta-4' => request()->routeIs('vehiculo.index')
+                        ])
                         >
                             <x-fas-car class="fill-current h-5 w-5"/>
                             Autos
@@ -104,10 +104,11 @@
                     <!-- Menu Item categorias -->
                     <li>
                         <a
-                            class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
-                            href="{{route('categoria.index')}}"
-                            @click="selected = (selected === 'categorias' ? '':'categorias')"
-                            :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'categorias') }"
+                        href="{{route('categoria.index')}}"
+                        @class([
+                            'group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4',
+                            'bg-graydark dark:bg-meta-4' => request()->routeIs('categoria.index')
+                        ])
                         >
                             <x-fas-tags class="fill-current h-5 w-5"/>
                             Categorias
@@ -118,11 +119,11 @@
                     <!-- Usuarios -->
                     <li>
                         <a
-                            class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
                             href="{{route('usuario.index')}}"
-                            @click="selected = (selected === 'Usuarios' ? '':'Usuarios')"
-                            :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Usuarios') }"
-                            :class="page === 'Usuarios' && 'bg-graydark'"
+                            @class([
+                                'group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4',
+                                'bg-graydark dark:bg-meta-4' => request()->routeIs('usuario.index')
+                            ])
                         >
                             <x-fas-user-friends class="fill-current h-5 w-5"/>
                             Usuarios
