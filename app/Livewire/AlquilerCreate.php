@@ -45,6 +45,7 @@ class AlquilerCreate extends Component
     {
         $this->tarjeta_id = $tarjetaId;
     }
+
     public function confirmar()
     {
         $this->validate();
@@ -57,8 +58,11 @@ class AlquilerCreate extends Component
             'user_id' => Auth::user()->id,
             'fecha_inicio' => $this->fecha_inicio,
             'fecha_fin' => $this->fecha_fin,
-            'monto' => $this->vehiculo->precio_dia * $dias
+            'monto' => $this->vehiculo->precio_dia * $dias,
+            'activo' => 1
         ]);
+
+        $this->vehiculo->update(['activo' => 1]);
 
         $this->dispatch('alquilerCreated');
         $this->resetValues();

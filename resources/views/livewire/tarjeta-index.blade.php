@@ -1,8 +1,8 @@
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 rounded-xl justify-center items-center">
     @foreach($tarjetas as $tarjeta)
         <div
-            class="w-full bg-red-100 dark:bg-gray-800 rounded-xl shadow-2xl transition-transform transform hover:scale-110 relative">
-            <img class="object-cover w-full h-24 rounded-t-xl" src="https://i.imgur.com/kGkSg1v.png" alt="Card Image">
+            class="w-full bg-gray-100 dark:bg-graydark rounded-xl shadow-2xl transition-transform transform relative">
+            <img class="object-cover w-full h-24 rounded-t-xl" src="{{asset('card-cover.png')}}" alt="Card Image">
             <div class="px-8 py-4">
                 <div class="flex justify-between items-center">
                     <div>
@@ -29,7 +29,7 @@
                     </div>
                 </div>
             </div>
-            <x-far-trash-can wire:click="delete({{$tarjeta->id}})" class="fill-current h-5 w-5 absolute top-4 right-4 cursor-pointer"/>
+            <x-far-trash-can wire:click="delete({{$tarjeta->id}})" class="text-white dark:text-black h-5 w-5 absolute top-4 right-4 cursor-pointer"/>
         </div>
     @endforeach
 </div>

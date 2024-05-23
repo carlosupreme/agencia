@@ -34,7 +34,7 @@ class CategoriasIndex extends Component
     #[On('categoriaUpdated')]
     public function render()
     {
-        $categorias = Categoria::where('nombre', 'LIKE', "%{$this->search}%")
+        $categorias = Categoria::matching($this->search, 'nombre', 'id')
             ->withCount('vehiculos')
             ->latest('id')
             ->get();

@@ -17,11 +17,14 @@ class AlquilerIndex extends Component
 
     public function render()
     {
+        $tieneTarjetas = auth()->user()->tarjetas->count() > 0;
+
         $vehiculos = Vehiculo::matching($this->search, 'placas', 'modelo', 'marca')
+            ->where('activo', false)
             ->with('categoria')
             ->latest('id')
             ->get();
 
-        return view('livewire.alquiler-index', compact('vehiculos'));
+        return view('livewire.alquiler-index', compact('vehiculos', 'tieneTarjetas'));
     }
 }

@@ -52,16 +52,16 @@
                         :class="darkMode ? 'bg-primary' : 'bg-stroke'"
                         class="relative m-0 block h-7.5 w-14 rounded-full"
                     >
-                        <input
-                            type="checkbox"
-                            :value="darkMode"
-                            @change="darkMode = !darkMode"
-                            class="absolute top-0 z-50 m-0 h-full w-full cursor-pointer opacity-0"
-                        />
-                        <span
-                            :class="darkMode && '!right-1 !translate-x-full'"
-                            class="absolute left-1 top-1/2 flex h-6 w-6 -translate-y-1/2 translate-x-0 items-center justify-center rounded-full bg-white shadow-switcher duration-75 ease-linear"
-                        >
+                    <input
+                        type="checkbox"
+                        :value="darkMode"
+                        @change="darkMode = !darkMode"
+                        class="absolute top-0 z-50 m-0 h-full w-full cursor-pointer opacity-0"
+                    />
+                    <span
+                        :class="darkMode && '!right-1 !translate-x-full'"
+                        class="absolute left-1 top-1/2 flex h-6 w-6 -translate-y-1/2 translate-x-0 items-center justify-center rounded-full bg-white shadow-switcher duration-75 ease-linear"
+                    >
               <span class="dark:hidden">
                 <svg
                     width="16"
@@ -98,8 +98,6 @@
                     </label>
                     <!-- Dark Mode Toggler -->
                 </li>
-
-
             </ul>
 
             <!-- User Area -->
@@ -118,26 +116,25 @@
             >{{Auth::user()->name}}</span
             >
           </span>
+                <img class="h-8 w-8 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}"
+                        alt="{{Auth::user()->name }}"/>
 
-                    <img class="h-8 w-8 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}"
-                         alt="{{Auth::user()->name }}"/>
-
-                    <svg
-                        :class="dropdownOpen && 'rotate-180'"
-                        class="hidden fill-current sm:block"
-                        width="12"
-                        height="8"
-                        viewBox="0 0 12 8"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
-                            d="M0.410765 0.910734C0.736202 0.585297 1.26384 0.585297 1.58928 0.910734L6.00002 5.32148L10.4108 0.910734C10.7362 0.585297 11.2638 0.585297 11.5893 0.910734C11.9147 1.23617 11.9147 1.76381 11.5893 2.08924L6.58928 7.08924C6.26384 7.41468 5.7362 7.41468 5.41077 7.08924L0.410765 2.08924C0.0853277 1.76381 0.0853277 1.23617 0.410765 0.910734Z"
-                            fill=""
-                        />
-                    </svg>
+                <svg
+                    :class="dropdownOpen && 'rotate-180'"
+                    class="hidden fill-current sm:block"
+                    width="12"
+                    height="8"
+                    viewBox="0 0 12 8"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M0.410765 0.910734C0.736202 0.585297 1.26384 0.585297 1.58928 0.910734L6.00002 5.32148L10.4108 0.910734C10.7362 0.585297 11.2638 0.585297 11.5893 0.910734C11.9147 1.23617 11.9147 1.76381 11.5893 2.08924L6.58928 7.08924C6.26384 7.41468 5.7362 7.41468 5.41077 7.08924L0.410765 2.08924C0.0853277 1.76381 0.0853277 1.23617 0.410765 0.910734Z"
+                        fill=""
+                    />
+                </svg>
                 </a>
 
                 <!-- Dropdown Start -->

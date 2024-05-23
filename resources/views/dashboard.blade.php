@@ -110,7 +110,7 @@
             @foreach($vehiculos as $vehiculo)
                 <div wire:key="{{$vehiculo->id}}"
                      class="min-w-96 max-w-96 bg-white rounded-lg dark:bg-black shadow-xl border-gray-500">
-                    <img class="rounded-t-lg object-cover w-full" src="{{$vehiculo->vehiculo->foto}}"
+                    <img class="rounded-t-lg object-cover w-full" src="{{$vehiculo->vehiculo->photo_url}}"
                          alt="Foto de {{$vehiculo->vehiculo->modelo}}"/>
                     <div class="p-5">
                         <h5 class="flex items-center justify-between mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">

@@ -19,7 +19,7 @@
             </div>
 
             <div class="col-span-2">
-                <h4 class="mb-2">Elige una tarjeta</h4>
+                <h4 class="mb-4">Elige una tarjeta</h4>
                 <div
                     class="grid grid-cols-1 sm:grid-cols-2 gap-6 rounded-xl justify-center items-center">
                     @foreach($tarjetas as $tarjeta)
@@ -27,9 +27,9 @@
                                 wire:key="{{$tarjeta->id}}"
                                 wire:click="seleccionarTarjeta({{$tarjeta->id}})"
                                 @class([
-                                    "w-full bg-red-100 dark:bg-gray-800 rounded-xl shadow-2xl transition-transform transform hover:scale-110",
-                                    "scale-110" => $tarjeta_id== $tarjeta->id,])>
-                            <img class="object-cover w-full h-12 rounded-t-xl" src="https://i.imgur.com/kGkSg1v.png"
+                                    "cursor-pointer w-full bg-gray-100 dark:bg-gray-800 rounded-xl shadow-2xl transition-transform transform hover:scale-110",
+                                    "scale-110 bg-gray-200 dark:bg-gray-600" => $tarjeta_id== $tarjeta->id,])>
+                            <img class="object-cover w-full h-12 rounded-t-xl" src="{{asset('card-cover.png')}}"
                                  alt="Card Image">
                             <div class="px-8 py-4">
                                 <div class="flex justify-between items-center">
@@ -37,7 +37,7 @@
                                         <p class="font-medium tracking-wide text-gray-800 dark:text-gray-200">{{$tarjeta->titular}}</p>
                                         <p class="mt-2 font-medium tracking-wider text-gray-800 dark:text-gray-200"> {{ substr_replace($tarjeta->numero, '**** **** **** ', 0, 12) }}</p>
                                     </div>
-                                    <img class="w-8 h-8" src="https://i.imgur.com/bbPHJVe.png" alt="Bank Logo">
+                                    <img class="w-8 h-8" src="{{asset('mastercard.png')}}" alt="Bank Logo">
                                 </div>
 
                                 <p class="font-medium tracking-widest text-sm text-gray-800 dark:text-gray-200 first-letter:uppercase">{{$tarjeta->tipo}}</p>

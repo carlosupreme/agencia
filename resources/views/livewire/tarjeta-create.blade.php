@@ -1,4 +1,4 @@
-<div class="flex flex-col items-center justify-between p-4">
+<div class="flex flex-col items-center justify-between p-4 mb-4">
     <div class="bg-white dark:bg-black w-full max-w-3xl mx-auto px-6 py-8 shadow-md rounded-md flex">
         <div class="w-1/2 pr-8 border-r-2 border-slate-300">
             <label class="text-neutral-800 dark:text-white font-bold text-sm mb-2 block">Numero de tarjeta:</label>
@@ -85,7 +85,7 @@
                 <div class="crediCard relative cursor-pointer transition-transform duration-500"
                      style="transform-style: preserve-3d">
                     <div class="w-full m-auto rounded-xl shadow-2xl absolute" style="backface-visibility: hidden">
-                        <img src="https://i.ibb.co/B2vQ0xG/Card-1.jpg" class="object-cover w-full h-full"/>
+                        <img src="{{ asset('Card-1.jpg') }}" class="object-cover w-full h-full"/>
                     </div>
                     <div class="w-full m-auto rounded-xl shadow-2xl absolute"
                          style="backface-visibility: hidden; transform: rotateY(180deg)">

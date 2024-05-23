@@ -14,7 +14,7 @@
             @foreach($vehiculos as $vehiculo)
                 <div wire:key="{{$vehiculo->id}}"
                      class="max-w-sm bg-white rounded-lg dark:bg-black shadow-xl border-gray-500">
-                    <img class="rounded-t-lg object-cover w-full" src="{{$vehiculo->foto}}"
+                    <img class="rounded-t-lg object-cover w-full" src="{{$vehiculo->photo_url}}"
                          alt="Foto de {{$vehiculo->modelo}}"/>
                     <div class="p-5">
                         <h5 class="flex items-center justify-between mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -25,6 +25,13 @@
                             <p>Placas : {{ $vehiculo->placas }}</p>
                             <p>Categoria : {{ $vehiculo->categoria->nombre }}</p>
                         </div>
+                        @if( $vehiculo->activo)
+
+                        Alquilado
+
+                        @elseif(!$tieneTarjetas)
+                            No tienes tarjetas registradas
+                        @else
                         <button
                             class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                             wire:click="modalAlquilar({{$vehiculo->id}})"
@@ -36,6 +43,7 @@
                                       stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                             </svg>
                         </button>
+                        @endif
                     </div>
                 </div>
             @endforeach

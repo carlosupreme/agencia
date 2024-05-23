@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Alquiler extends Model
 {
 
-    protected $fillable = ['vehiculo_id', 'user_id', 'tarjeta_id', 'fecha_inicio', 'fecha_fin', 'monto'];
+    protected $fillable = ['vehiculo_id', 'user_id', 'tarjeta_id', 'fecha_inicio', 'fecha_fin', 'monto', 'activo'];
 
     public function user()
     {

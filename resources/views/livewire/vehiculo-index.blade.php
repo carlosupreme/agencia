@@ -4,7 +4,7 @@
             wire:model.live="search"
             type="search"
             class="w-full"
-            placeholder="Buscar auto"
+            placeholder="Buscar auto por modelo, placas, marca..."
         />
         @livewire('vehiculo-create')
     </div>
@@ -52,15 +52,11 @@
                                 <p class="text-xs text-graydark dark:text-gray ">ID:{{$vehiculo->id}}</p>
                             </td>
                             <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-
-                                @if($vehiculo->foto)
-                                    <img
-                                        src="{{$vehiculo->foto }}"
-                                        alt="Foto de {{$vehiculo->marca}} {{$vehiculo->modelo}}"
-                                        class="w-16 h-16 object-contain rounded-md"
-                                    >
-                                @endif
-
+                                <img
+                                    src="{{$vehiculo->photo_url}}"
+                                    alt="Foto de {{$vehiculo->marca}} {{$vehiculo->modelo}}"
+                                    class="w-16 h-16 object-contain rounded-md"
+                                >
                             </td>
                             <td class="text-center border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                                 <p class="text-center text-black dark:text-white flex items-center gap-2">

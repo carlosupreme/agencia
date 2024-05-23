@@ -36,10 +36,7 @@ class UsuarioEdit extends Component
     public function updateUser(): void
     {
         $this->validate([
-            'roles' => 'required',
-            'name' => ['required'],
             'email' => [
-                'required',
                 'email',
                 Rule::unique('users', 'email')->ignoreModel($this->user)
             ]
@@ -50,7 +47,8 @@ class UsuarioEdit extends Component
             'email' => $this->email
         ]);
 
-        $this->user->roles()->sync($this->roles);
+        if(count($this->roles) > 0)
+            $this->user->roles()->sync($this->roles);
 
         $this->dispatch('usuarioUpdated');
         $this->resetValues();
