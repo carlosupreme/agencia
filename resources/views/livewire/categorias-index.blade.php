@@ -64,15 +64,18 @@
                             </td>
                             <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                                 <div class="flex items-center space-x-3.5">
-
-                                    <button class="hover:text-primary"
-                                            wire:click="edit({{ $categoria->id }})"
-                                    >
+                                    <button class="hover:text-primary" wire:click="edit({{ $categoria->id }})">
                                         <x-far-pen-to-square class="fill-current h-5 w-5"/>
                                     </button>
+
+                                    @php
+                                        $sePuedeBorrar = $categoria->vehiculos->where('activo', true)->count() === 0;
+                                    @endphp
+                                    @if($sePuedeBorrar)
                                     <button class="hover:text-primary" wire:click="confirmDelete({{$categoria->id}})">
                                         <x-far-trash-can class="fill-current h-5 w-5"/>
                                     </button>
+                                        @endif
                                 </div>
                             </td>
                         </tr>

@@ -20,6 +20,11 @@ class Vehiculo extends Model
         return $this->belongsTo(Categoria::class);
     }
 
+    public function alquileres()
+    {
+        return $this->hasMany(Alquiler::class);
+    }
+
     public function deleteProfilePhoto()
     {
         if (is_null($this->foto)) return;

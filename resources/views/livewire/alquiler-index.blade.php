@@ -9,11 +9,11 @@
     </div>
     @livewire('alquiler-create')
 
-    <div class="max-w-full overflow-x-auto mt-5">
+    <div class="max-w-full overflow-x-auto mt-5 flex gap-4 items-center">
         @if(count($vehiculos) > 0)
             @foreach($vehiculos as $vehiculo)
                 <div wire:key="{{$vehiculo->id}}"
-                     class="max-w-sm bg-white rounded-lg dark:bg-black shadow-xl border-gray-500">
+                     class="w-96 h-115 bg-white rounded-lg dark:bg-black shadow-xl border-gray-500">
                     <img class="rounded-t-lg object-cover w-full" src="{{$vehiculo->photo_url}}"
                          alt="Foto de {{$vehiculo->modelo}}"/>
                     <div class="p-5">
@@ -26,23 +26,27 @@
                             <p>Categoria : {{ $vehiculo->categoria->nombre }}</p>
                         </div>
                         @if( $vehiculo->activo)
-
-                        Alquilado
-
+                            <span
+                                class="bg-red-100 text-red-800 font-medium px-2.5 py-2 rounded-lg dark:bg-red-900 dark:text-red-300">Alquilado</span>
                         @elseif(!$tieneTarjetas)
-                            No tienes tarjetas registradas
+                            <div class="flex flex-col gap-2">
+                                <span class="w-fit bg-yellow-100 text-yellow-800 font-medium px-2.5 py-2 rounded-lg dark:bg-yellow-900 dark:text-yellow-300">
+                                    No tienes tarjetas registradas.
+                                </span>
+                                <a href="{{route('tarjeta.index')}}" class="text-xs underline">Registra una aquí</a>
+                            </div>
                         @else
-                        <button
-                            class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                            wire:click="modalAlquilar({{$vehiculo->id}})"
-                        >
-                            Alquilar
-                            <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
-                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                      stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                            </svg>
-                        </button>
+                            <button
+                                class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                wire:click="modalAlquilar({{$vehiculo->id}})"
+                            >
+                                Alquilar
+                                <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                          stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                                </svg>
+                            </button>
                         @endif
                     </div>
                 </div>

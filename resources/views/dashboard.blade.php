@@ -101,8 +101,8 @@
 
     <h2 class="my-5 text-3xl text-black dark:text-white">Vehiculos alquilados</h2>
     @php
-        $vehiculos = \App\Models\Alquiler::where('user_id', auth()->id())->with('vehiculo')
-        ->get();
+        checkFechaFinVehiculos();
+        $vehiculos = \App\Models\Alquiler::where('user_id', auth()->id())->with('vehiculo')->get();
     @endphp
 
     <div class="max-w-full flex flex-wrap items-center gap-4 overflow-x-auto mt-5">
@@ -118,11 +118,21 @@
                             <span class="text-lg font-medium">Total: $ {{$vehiculo->monto}} </span>
                         </h5>
                         <div class="mb-3 flex flex-col gap-2 font-normal text-gray-700 dark:text-gray-400">
-                            <p>Fecha de alquiler : {{ $vehiculo->fecha_inicio }}</p>
-                            <p>Fecha de devolucion : {{ $vehiculo->fecha_fin }}</p>
+                            <p>Fecha de alquiler
+                                : {{ \Carbon\Carbon::parse($vehiculo->fecha_inicio)->format('d/m/Y') }}</p>
+                            <p>Fecha de devolucion
+                                : {{ \Carbon\Carbon::parse($vehiculo->fecha_fin)->format('d/m/Y')}}</p>
                             <p>Dias
                                 alquilado: {{ \Carbon\Carbon::parse($vehiculo->fecha_inicio)->diffInDays(\Carbon\Carbon::parse($vehiculo->fecha_fin)) }}</p>
                         </div>
+
+                        @if($vehiculo->activo)
+                            <span
+                                class="bg-green-100 text-green-800 font-medium px-2.5 py-2 rounded-lg dark:bg-green-900 dark:text-green-300">Activo</span>
+                        @else
+                            <span
+                                class="bg-red-100 text-red-800 font-medium px-2.5 py-2 rounded-lg dark:bg-red-900 dark:text-red-300">Vencido</span>
+                        @endif
                     </div>
                 </div>
             @endforeach

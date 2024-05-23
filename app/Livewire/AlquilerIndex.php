@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Vehiculo;
+use Carbon\Carbon;
 use Livewire\Component;
 
 class AlquilerIndex extends Component
@@ -18,9 +19,10 @@ class AlquilerIndex extends Component
     public function render()
     {
         $tieneTarjetas = auth()->user()->tarjetas->count() > 0;
+        checkFechaFinVehiculos();
 
         $vehiculos = Vehiculo::matching($this->search, 'placas', 'modelo', 'marca')
-            ->where('activo', false)
+            // ->where('activo', false)
             ->with('categoria')
             ->latest('id')
             ->get();
