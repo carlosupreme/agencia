@@ -21,9 +21,7 @@ class VehiculoIndex extends Component
     public function deleteVehiculo($id)
     {
         $v = Vehiculo::findOrFail($id);
-
-        if ($v->foto) Storage::delete(str_replace("/storage/", "", $v->foto));
-
+        $v->deletePhoto();
         $v->delete();
 
         $this->dispatch('actionCompleted');
@@ -40,6 +38,15 @@ class VehiculoIndex extends Component
     public function render()
     {
         $vehiculos = Vehiculo::matching($this->search, 'marca', 'id')
+            ->orwhereHas('categoria', function ($query) {
+                $query->where('nombre', 'like', "%$this->search%");
+            })
+            ->orwhereHas('modelo', function ($query) {
+                $query->where('nombre', 'like', "%$this->search%");
+            })
+            ->orwhereHas('placa', function ($query) {
+                $query->where('placa', 'like', "%$this->search%");
+            })
             ->with('categoria', 'modelo', 'placa')
             ->latest('id')
             ->get();

@@ -61,18 +61,17 @@ class VehiculoEdit extends Component
     {
         $this->validate();
 
-        if ($this->newFoto && $this->vehiculo->foto) {
-            Storage::delete(str_replace("/storage/", "", $this->vehiculo->foto));
-        }
-
         $this->vehiculo->update([
             'marca' => $this->marca,
             'modelo_id' => $this->modelo_id,
             'placa_id' => $this->placa_id,
             'precio_dia' => $this->precio_dia,
-            'categoria_id' => $this->categoria_id,
-            'foto' => $this->newFoto ? Storage::url($this->newFoto->store('vehiculos')) : $this->vehiculo->foto,
+            'categoria_id' => $this->categoria_id
         ]);
+
+        if ($this->newFoto) {
+            $this->vehiculo->updatePhoto($this->newFoto);
+        }
 
         $this->dispatch('vehiculoUpdated');
         $this->resetValues();

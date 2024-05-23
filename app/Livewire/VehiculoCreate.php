@@ -54,14 +54,17 @@ class VehiculoCreate extends Component
     {
         $this->validate();
 
-        Vehiculo::create([
+        $vehiculo = Vehiculo::create([
             'marca' => $this->marca,
             'modelo_id' => $this->modelo_id,
             'placa_id' => $this->placa_id,
             'precio_dia' => $this->precio_dia,
-            'categoria_id' => $this->categoria_id,
-            'foto' => $this->foto ? Storage::url($this->foto->store('vehiculos')) : null,
+            'categoria_id' => $this->categoria_id
         ]);
+
+        if ($this->foto) {
+            $vehiculo->updatePhoto($this->foto);
+        }
 
         $this->dispatch('vehiculoCreated');
         $this->resetValues();

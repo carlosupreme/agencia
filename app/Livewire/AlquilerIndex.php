@@ -3,7 +3,6 @@
 namespace App\Livewire;
 
 use App\Models\Vehiculo;
-use Carbon\Carbon;
 use Livewire\Component;
 
 class AlquilerIndex extends Component
@@ -22,6 +21,15 @@ class AlquilerIndex extends Component
         checkFechaFinVehiculos();
 
         $vehiculos = Vehiculo::matching($this->search, 'marca')
+            ->orwhereHas('categoria', function ($query) {
+                $query->where('nombre', 'like', "%$this->search%");
+            })
+            ->orwhereHas('modelo', function ($query) {
+                $query->where('nombre', 'like', "%$this->search%");
+            })
+            ->orwhereHas('placa', function ($query) {
+                $query->where('placa', 'like', "%$this->search%");
+            })
             // ->where('activo', false)
             ->with('categoria', 'modelo')
             ->latest('id')

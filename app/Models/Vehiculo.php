@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
 class Vehiculo extends Model
@@ -35,11 +36,26 @@ class Vehiculo extends Model
         return $this->hasMany(Alquiler::class);
     }
 
-    public function deleteProfilePhoto()
+    public function updatePhoto(UploadedFile $photo, $storagePath = 'vehiculos')
+    {
+        tap($this->foto, function ($previous) use ($photo, $storagePath) {
+            $this->forceFill([
+                'foto' => $photo->storePublicly(
+                    $storagePath, ['disk' => 'public']
+                ),
+            ])->save();
+
+            if ($previous) {
+                Storage::disk('public')->delete($previous);
+            }
+        });
+    }
+
+    public function deletePhoto()
     {
         if (is_null($this->foto)) return;
 
-        Storage::disk('public')->delete($this->profile_photo_path);
+        Storage::disk('public')->delete($this->foto);
 
         $this->forceFill([
             'foto' => null,
