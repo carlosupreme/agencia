@@ -9,11 +9,21 @@ use Illuminate\Support\Facades\Storage;
 
 class Vehiculo extends Model
 {
-    protected $fillable = ['marca', 'modelo', 'placas', 'categoria_id', 'foto', 'precio_dia', 'activo'];
+    protected $fillable = ['marca', 'modelo_id', 'placa_id', 'categoria_id', 'foto', 'precio_dia', 'activo'];
 
     protected $appends = [
         'photo_url',
     ];
+
+    public function placa()
+    {
+        return $this->belongsTo(Placa::class);
+    }
+
+    public function modelo()
+    {
+        return $this->belongsTo(Modelo::class);
+    }
 
     public function categoria()
     {

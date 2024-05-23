@@ -3,6 +3,8 @@
 namespace App\Livewire;
 
 use App\Models\Categoria;
+use App\Models\Modelo;
+use App\Models\Placa;
 use App\Models\Vehiculo;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\On;
@@ -17,15 +19,17 @@ class VehiculoEdit extends Component
     public Vehiculo $vehiculo;
     public $open = false;
     public $categorias = [];
+    public $placas = [];
+    public $modelos = [];
 
     #[Validate('required')]
     public $marca = '';
 
     #[Validate('required')]
-    public $modelo = '';
+    public $modelo_id = '';
 
     #[Validate('required')]
-    public $placas = '';
+    public $placa_id;
 
     #[Validate('required|numeric')]
     public $precio_dia = '';
@@ -41,10 +45,12 @@ class VehiculoEdit extends Component
     public function editVehiculo($vehiculoId)
     {
         $this->categorias = Categoria::select('id', 'nombre')->get();
+        $this->modelos = Modelo::select('id', 'nombre')->get();
+        $this->placas = Placa::select('id', 'placa')->get();
         $this->vehiculo = Vehiculo::findOrfail($vehiculoId);
         $this->marca = $this->vehiculo->marca;
-        $this->modelo = $this->vehiculo->modelo;
-        $this->placas = $this->vehiculo->placas;
+        $this->modelo_id = $this->vehiculo->modelo_id;
+        $this->placa_id = $this->vehiculo->placa_id;
         $this->precio_dia = $this->vehiculo->precio_dia;
         $this->categoria_id = $this->vehiculo->categoria_id;
         $this->foto = $this->vehiculo->foto;
@@ -61,8 +67,8 @@ class VehiculoEdit extends Component
 
         $this->vehiculo->update([
             'marca' => $this->marca,
-            'modelo' => $this->modelo,
-            'placas' => $this->placas,
+            'modelo_id' => $this->modelo_id,
+            'placa_id' => $this->placa_id,
             'precio_dia' => $this->precio_dia,
             'categoria_id' => $this->categoria_id,
             'foto' => $this->newFoto ? Storage::url($this->newFoto->store('vehiculos')) : $this->vehiculo->foto,

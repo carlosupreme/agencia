@@ -111,10 +111,10 @@
                 <div wire:key="{{$vehiculo->id}}"
                      class="min-w-96 max-w-96 bg-white rounded-lg dark:bg-black shadow-xl border-gray-500">
                     <img class="rounded-t-lg object-cover w-full" src="{{$vehiculo->vehiculo->photo_url}}"
-                         alt="Foto de {{$vehiculo->vehiculo->modelo}}"/>
+                         alt="Foto de {{$vehiculo->vehiculo->modelo->nombre}}"/>
                     <div class="p-5">
                         <h5 class="flex items-center justify-between mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            <span>{{$vehiculo->vehiculo->marca}} {{$vehiculo->vehiculo->modelo}}</span>
+                            <span>{{$vehiculo->vehiculo->marca}} {{$vehiculo->vehiculo->modelo->nombre}}</span>
                             <span class="text-lg font-medium">Total: $ {{$vehiculo->monto}} </span>
                         </h5>
                         <div class="mb-3 flex flex-col gap-2 font-normal text-gray-700 dark:text-gray-400">

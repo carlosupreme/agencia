@@ -39,8 +39,8 @@ class VehiculoIndex extends Component
     #[On('vehiculoUpdated')]
     public function render()
     {
-        $vehiculos = Vehiculo::matching($this->search, 'placas', 'modelo', 'marca', 'id')
-            ->with('categoria')
+        $vehiculos = Vehiculo::matching($this->search, 'marca', 'id')
+            ->with('categoria', 'modelo', 'placa')
             ->latest('id')
             ->get();
 

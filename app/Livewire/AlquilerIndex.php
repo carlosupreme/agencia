@@ -21,9 +21,9 @@ class AlquilerIndex extends Component
         $tieneTarjetas = auth()->user()->tarjetas->count() > 0;
         checkFechaFinVehiculos();
 
-        $vehiculos = Vehiculo::matching($this->search, 'placas', 'modelo', 'marca')
+        $vehiculos = Vehiculo::matching($this->search, 'marca')
             // ->where('activo', false)
-            ->with('categoria')
+            ->with('categoria', 'modelo')
             ->latest('id')
             ->get();
 

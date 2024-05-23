@@ -3,6 +3,8 @@
 namespace App\Livewire;
 
 use App\Models\Categoria;
+use App\Models\Modelo;
+use App\Models\Placa;
 use App\Models\Vehiculo;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
@@ -18,10 +20,10 @@ class VehiculoCreate extends Component
     public $marca = '';
 
     #[Validate('required')]
-    public $modelo = '';
+    public $modelo_id = '';
 
     #[Validate('required')]
-    public $placas = '';
+    public $placa_id = '';
 
     #[Validate('required|numeric')]
     public $precio_dia = '';
@@ -33,12 +35,18 @@ class VehiculoCreate extends Component
     public $foto;
 
     public $categorias = [];
+    public $placas = [];
+    public $modelos = [];
 
     public $open = false;
 
     public function beVisible()
     {
         $this->categorias = Categoria::select('id', 'nombre')->get();
+        $this->modelos = Modelo::select('id', 'nombre')->get();
+        $this->placas = Placa::select('id', 'placa')->get()->filter(function ($placa) {
+            return !Vehiculo::where('placa_id', $placa->id)->exists();
+        });
         $this->open = true;
     }
 
@@ -48,8 +56,8 @@ class VehiculoCreate extends Component
 
         Vehiculo::create([
             'marca' => $this->marca,
-            'modelo' => $this->modelo,
-            'placas' => $this->placas,
+            'modelo_id' => $this->modelo_id,
+            'placa_id' => $this->placa_id,
             'precio_dia' => $this->precio_dia,
             'categoria_id' => $this->categoria_id,
             'foto' => $this->foto ? Storage::url($this->foto->store('vehiculos')) : null,

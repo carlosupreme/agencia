@@ -15,15 +15,43 @@
             <div class="col-span-2 md:col-span-1">
                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-2"
                        for="modelo">Modelo</label>
-                <x-input class="w-full" wire:model="modelo" type="text" name="modelo" id="modelo"/>
-                <x-input-error for="modelo"/>
+                <div class="flex flex-col gap-2">
+                    <select
+                        wire:model="modelo_id"
+                        id="modelo"
+                        class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
+                        :class="isOptionSelected && 'text-black dark:text-white'"
+                        @change="isOptionSelected = true"
+                    >
+                        <option selected disabled value="" class="text-body">Selecciona un modelo</option>
+                        @foreach($modelos as $modelo)
+                            <option value="{{$modelo->id}}">{{$modelo->nombre}}</option>
+                        @endforeach
+                    </select>
+
+                    <x-input-error for="modelo_id"/>
+                </div>
             </div>
 
             <div class="col-span-2 md:col-span-1">
                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-2"
-                       for="placas">Placas</label>
-                <x-input class="w-full" wire:model="placas" type="text" name="placas" id="placas"/>
-                <x-input-error for="placas"/>
+                       for="placa">Placa</label>
+                <div class="flex flex-col gap-2">
+                    <select
+                        wire:model="placa_id"
+                        id="placa"
+                        class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
+                        :class="isOptionSelected && 'text-black dark:text-white'"
+                        @change="isOptionSelected = true"
+                    >
+                        <option selected disabled value="" class="text-body">Selecciona una placa</option>
+                        @foreach($placas as $placa)
+                            <option value="{{$placa->id}}">{{$placa->placa}}</option>
+                        @endforeach
+                    </select>
+
+                    <x-input-error for="placa_id"/>
+                </div>
             </div>
 
             <div class="col-span-2 md:col-span-1">

@@ -129,8 +129,40 @@
                             Usuarios
                         </a>
                     </li>
-                    @endrole
+
                     <!-- Usuarios -->
+
+                    <!-- Modelos -->
+                    <li>
+                        <a
+                            href="{{route('modelo.index')}}"
+                            @class([
+                                'group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4',
+                                'bg-graydark dark:bg-meta-4' => request()->routeIs('modelo.index')
+                            ])
+                        >
+                            <x-fas-atlas class="fill-current h-5 w-5"/>
+                            Modelos
+                        </a>
+                    </li>
+
+                    <!-- Modelos -->
+
+                    <!-- Placas -->
+                    <li>
+                        <a
+                            href="{{route('placa.index')}}"
+                            @class([
+                                'group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4',
+                                'bg-graydark dark:bg-meta-4' => request()->routeIs('placa.index')
+                            ])
+                        >
+                            <x-fas-tarp  class="fill-current h-5 w-5"/>
+                            Placas
+                        </a>
+                    </li>
+                    @endrole
+                    <!-- Placas -->
                 </ul>
             </div>
         </nav>

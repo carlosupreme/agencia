@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('vehiculos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('categoria_id')->constrained();
-            $table->string('modelo');
+            $table->foreignId('categoria_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('modelo_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('placa_id')->nullable()->constrained()->nullOnDelete();
             $table->string('marca');
-            $table->string('placas');
             $table->decimal('precio_dia');
             $table->timestamps();
         });

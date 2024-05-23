@@ -4,38 +4,33 @@
             wire:model.live="search"
             type="search"
             class="w-full"
-            placeholder="Buscar auto por modelo, placas, marca..."
+            placeholder="Buscar modelo"
         />
-        @livewire('vehiculo-create')
+        @livewire('modelo-create')
     </div>
 
     <div
         class="rounded-sm border border-stroke bg-white px-5 py-6 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5"
     >
         <div class="max-w-full overflow-x-auto">
-            @if(count($vehiculos) > 0)
+            @if(count($modelos) > 0)
                 <table class="w-full table-auto">
                     <thead>
                     <tr class="bg-gray-2 text-left dark:bg-meta-4">
                         <th
-                            class="min-w-[220px] px-4 py-4 font-medium text-black dark:text-white"
+                            class="min-w-[220px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11"
                         >
-                            Vehiculo
+                            Nombre
                         </th>
                         <th
                             class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white"
                         >
-                            Foto
+                            Fecha de creacion
                         </th>
                         <th
                             class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white"
                         >
-                            Precio por día
-                        </th>
-                        <th
-                            class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white"
-                        >
-                            Categoria
+                            Vehiculos asociados
                         </th>
                         <th class="px-4 py-4 font-medium text-black dark:text-white">
                             Acciones
@@ -43,45 +38,44 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($vehiculos as $vehiculo)
-                        <tr wire:key="{{ $vehiculo->id }}">
+                    @foreach($modelos as $modelo)
+                        <tr wire:key="{{ $modelo->id }}">
                             <td
-                                class="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark"
+                                class="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11"
                             >
-                                <h5 class="font-medium text-black dark:text-white">{{$vehiculo->marca}} {{$vehiculo->modelo->nombre}} {{$vehiculo->placa->placa}}</h5>
-                                <p class="text-xs text-graydark dark:text-gray ">ID:{{$vehiculo->id}}</p>
+                                <h5 class="font-medium text-black dark:text-white">{{$modelo->nombre}}</h5>
+                                <p class="text-xs text-graydark dark:text-gray ">ID:{{$modelo->id}}</p>
                             </td>
                             <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-                                <img
-                                    src="{{$vehiculo->photo_url}}"
-                                    alt="Foto de {{$vehiculo->marca}} {{$vehiculo->modelo->nombre}}"
-                                    class="w-16 h-16 object-contain rounded-md"
-                                >
-                            </td>
-                            <td class="text-center border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-                                <p class="text-center text-black dark:text-white flex items-center gap-2">
-                                    ${{$vehiculo->precio_dia}}
+                                <p class="text-black dark:text-white flex items-center gap-2">
+                                    <x-far-clock class="h-3 w-3"/>
+                                    <span class="first-letter:uppercase">
+                                    {{$modelo->created_at->diffForHumans()}}
+                                    </span>
                                 </p>
                             </td>
                             <td class="text-center border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                                 <p class="text-center text-black dark:text-white flex items-center gap-2">
-                                    <x-fas-tag class="h-3 w-3"/>
+                                    <x-fas-car class="h-3 w-3"/>
                                     <span class="first-letter:uppercase">
-                                    {{$vehiculo->categoria->nombre}}
+                                    {{$modelo->vehiculos_count}}
                                     </span>
                                 </p>
                             </td>
                             <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                                 <div class="flex items-center space-x-3.5">
-
-                                    <button class="hover:text-primary"
-                                            wire:click="edit({{ $vehiculo->id }})"
-                                    >
+                                    <button class="hover:text-primary" wire:click="edit({{ $modelo->id }})">
                                         <x-far-pen-to-square class="fill-current h-5 w-5"/>
                                     </button>
-                                    <button class="hover:text-primary" wire:click="confirmDelete({{$vehiculo->id}})">
-                                        <x-far-trash-can class="fill-current h-5 w-5"/>
-                                    </button>
+
+                                    @php
+                                        $sePuedeBorrar = $modelo->vehiculos->where('activo', true)->count() === 0;
+                                    @endphp
+                                    @if($sePuedeBorrar)
+                                        <button class="hover:text-primary" wire:click="confirmDelete({{$modelo->id}})">
+                                            <x-far-trash-can class="fill-current h-5 w-5"/>
+                                        </button>
+                                    @endif
                                 </div>
                             </td>
                         </tr>
@@ -90,19 +84,19 @@
                 </table>
             @else
                 <h2 class="py-4 text-center text-3xl dark:text-gray text-graydark">
-                    No hay vehiculos
+                    No hay modelos
                 </h2>
             @endif
         </div>
     </div>
 
-    @livewire('vehiculo-edit')
+    @livewire('modelo-edit')
 
     @livewire('delete-modal', [
-        'modalId' => 'deleteVehiculoModal',
-        'action' => 'deleteVehiculo',
+        'modalId' => 'deleteModeloModal',
+        'action' => 'deleteModelo',
         'actionName' => 'Eliminar',
-        'title' => 'Eliminar vechiulo',
-        'content' => '¿Está seguro de que desea eliminar esta vechiulo? <b>Esta acción es irreversible</b>',
+        'title' => 'Eliminar modelo',
+        'content' => '¿Está seguro de que desea eliminar este modelo? <b>Esta acción es irreversible</b>',
         ])
 </div>

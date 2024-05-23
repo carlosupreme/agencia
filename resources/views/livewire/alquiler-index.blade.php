@@ -15,14 +15,14 @@
                 <div wire:key="{{$vehiculo->id}}"
                      class="w-96 h-115 bg-white rounded-lg dark:bg-black shadow-xl border-gray-500">
                     <img class="rounded-t-lg object-cover w-full" src="{{$vehiculo->photo_url}}"
-                         alt="Foto de {{$vehiculo->modelo}}"/>
+                         alt="Foto de {{$vehiculo->modelo->nombre}}"/>
                     <div class="p-5">
                         <h5 class="flex items-center justify-between mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            <span>{{$vehiculo->marca}} {{$vehiculo->modelo}}</span>
+                            <span>{{$vehiculo->marca}} {{$vehiculo->modelo->nombre}}</span>
                             <span class="text-lg font-medium">$ {{$vehiculo->precio_dia}} / Dia </span>
                         </h5>
                         <div class="mb-3 flex flex-col gap-2 font-normal text-gray-700 dark:text-gray-400">
-                            <p>Placas : {{ $vehiculo->placas }}</p>
+                            <p>Placas : {{ $vehiculo->placa->placa }}</p>
                             <p>Categoria : {{ $vehiculo->categoria->nombre }}</p>
                         </div>
                         @if( $vehiculo->activo)
