@@ -11,7 +11,7 @@ function checkFechaFinVehiculos()
     $vehiculos->each(function ($vehiculo) {
         $a = $vehiculo->alquileres->filter(function ($alquiler) {
             $s = Carbon::now()->diffInDays(Carbon::parse($alquiler->fecha_fin));
-            return $s < 1;
+            return $s < 0;
         });
 
         $a->each(function ($alquiler) {

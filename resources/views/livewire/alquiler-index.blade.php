@@ -8,53 +8,61 @@
         />
     </div>
     @livewire('alquiler-create')
+    @livewire('vehiculo-show')
 
-    <div class="max-w-full overflow-x-auto mt-5 flex gap-4 items-center">
+    <div class="max-w-full mx-auto p-4 flex flex-wrap justify-center">
         @if(count($vehiculos) > 0)
             @foreach($vehiculos as $vehiculo)
-                <div wire:key="{{$vehiculo->id}}"
-                     class="w-96 h-115 bg-white rounded-lg dark:bg-black shadow-xl border-gray-500">
-                    <img class="rounded-t-lg object-cover w-full" src="{{$vehiculo->photo_url}}"
-                         alt="Foto de {{$vehiculo->modelo->nombre}}"/>
-                    <div class="p-5">
-                        <h5 class="flex items-center justify-between mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            <span>{{$vehiculo->marca}} {{$vehiculo->modelo->nombre}}</span>
-                            <span class="text-lg font-medium">$ {{$vehiculo->precio_dia}} / Dia </span>
-                        </h5>
-                        <div class="mb-3 flex flex-col gap-2 font-normal text-gray-700 dark:text-gray-400">
-                            <p>Placas : {{ $vehiculo->placa->placa }}</p>
-                            <p>Categoria : {{ $vehiculo->categoria->nombre }}</p>
+                <div class="w-full sm:w-1/2 lg:w-1/4 p-2" >
+                    <div class="bg-white dark:bg-black rounded-lg shadow-md overflow-hidden flex flex-col">
+                        <div class="relative cursor-pointer w-full h-48">
+                            <img class="absolute inset-0 w-full h-full object-cover" src="{{$vehiculo->photo_url}}"
+                                 alt="Foto de {{$vehiculo->modelo->nombre}}"/>
                         </div>
-                        @if( $vehiculo->activo)
-                            <span
-                                class="bg-red-100 text-red-800 font-medium px-2.5 py-2 rounded-lg dark:bg-red-900 dark:text-red-300">Alquilado</span>
-                        @elseif(!$tieneTarjetas)
-                            <div class="flex flex-col gap-2">
-                                <span class="w-fit bg-yellow-100 text-yellow-800 font-medium px-2.5 py-2 rounded-lg dark:bg-yellow-900 dark:text-yellow-300">
+                        <div class="p-4 flex flex-col gap-4 justify-between flex-grow">
+                            <div class="flex flex-col gap-4">
+                                <h3 class="text-2xl font-semibold">{{$vehiculo->modelo->nombre}}</h3>
+                                <p class="text-xl text-gray-700">$ {{$vehiculo->precio_dia}} por dia</p>
+                            </div>
+
+                            <x-button wire:click="modalVer({{$vehiculo->id}})">
+                                Ver más
+                            </x-button>
+
+                            @if($vehiculo->activo)
+                                <span
+                                        class="text-center bg-red-100 text-red-800 font-medium p-3 rounded-lg dark:bg-red-900 dark:text-red-300">Alquilado</span>
+                            @elseif(!$tieneTarjetas)
+                                <div class="flex flex-col gap-2">
+                                <span
+                                        class="w-fit bg-yellow-100 text-yellow-800 font-medium px-3 rounded-lg dark:bg-yellow-900 dark:text-yellow-300">
                                     No tienes tarjetas registradas.
                                 </span>
-                                <a href="{{route('tarjeta.index')}}" class="text-xs underline">Registra una aquí</a>
-                            </div>
-                        @else
-                            <button
-                                class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                wire:click="modalAlquilar({{$vehiculo->id}})"
-                            >
-                                Alquilar
-                                <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
-                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                          stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                                </svg>
-                            </button>
-                        @endif
+                                    <a href="{{route('tarjeta.index')}}" class="text-sm underline">Registra una aquí</a>
+                                </div>
+                            @else
+                                <x-button class="text-center items-center flex gap-2"
+                                          wire:click="modalAlquilar({{$vehiculo->id}})">
+                                    Alquilar
+                                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                              stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                                    </svg>
+                                </x-button>
+                            @endif
+                        </div>
                     </div>
                 </div>
             @endforeach
+
         @else
             <h2 class="py-4 text-center text-3xl dark:text-gray text-graydark">
                 No hay vehiculos para rentar
             </h2>
         @endif
+    </div>
+    <div x-intersect="$wire.cargarMas()">
+        <h1 class="text-7xl text-center">...</h1>
     </div>
 </div>

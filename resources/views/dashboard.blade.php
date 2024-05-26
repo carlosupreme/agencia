@@ -100,47 +100,6 @@
     @endrole
 
     <h2 class="my-5 text-3xl text-black dark:text-white">Vehiculos alquilados</h2>
-    @php
-        checkFechaFinVehiculos();
-        $vehiculos = \App\Models\Alquiler::where('user_id', auth()->id())->with('vehiculo')->get();
-    @endphp
-
-    <div class="max-w-full flex flex-wrap items-center gap-4 overflow-x-auto mt-5">
-        @if(count($vehiculos) > 0)
-            @foreach($vehiculos as $vehiculo)
-                <div wire:key="{{$vehiculo->id}}"
-                     class="min-w-96 max-w-96 bg-white rounded-lg dark:bg-black shadow-xl border-gray-500">
-                    <img class="rounded-t-lg object-cover w-full" src="{{$vehiculo->vehiculo->photo_url}}"
-                         alt="Foto de {{$vehiculo->vehiculo->modelo->nombre}}"/>
-                    <div class="p-5">
-                        <h5 class="flex items-center justify-between mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            <span>{{$vehiculo->vehiculo->marca}} {{$vehiculo->vehiculo->modelo->nombre}}</span>
-                            <span class="text-lg font-medium">Total: $ {{$vehiculo->monto}} </span>
-                        </h5>
-                        <div class="mb-3 flex flex-col gap-2 font-normal text-gray-700 dark:text-gray-400">
-                            <p>Fecha de alquiler
-                                : {{ \Carbon\Carbon::parse($vehiculo->fecha_inicio)->format('d/m/Y') }}</p>
-                            <p>Fecha de devolucion
-                                : {{ \Carbon\Carbon::parse($vehiculo->fecha_fin)->format('d/m/Y')}}</p>
-                            <p>Dias
-                                alquilado: {{ \Carbon\Carbon::parse($vehiculo->fecha_inicio)->diffInDays(\Carbon\Carbon::parse($vehiculo->fecha_fin)) }}</p>
-                        </div>
-
-                        @if($vehiculo->activo)
-                            <span
-                                class="bg-green-100 text-green-800 font-medium px-2.5 py-2 rounded-lg dark:bg-green-900 dark:text-green-300">Activo</span>
-                        @else
-                            <span
-                                class="bg-red-100 text-red-800 font-medium px-2.5 py-2 rounded-lg dark:bg-red-900 dark:text-red-300">Vencido</span>
-                        @endif
-                    </div>
-                </div>
-            @endforeach
-        @else
-            <h2 class="py-4 text-center text-3xl dark:text-gray text-graydark">
-                No hay vehiculos rentados
-            </h2>
-        @endif
-    </div>
+    @livewire('mis-alquileres')
 
 </x-app-layout>

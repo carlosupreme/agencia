@@ -79,15 +79,23 @@
                                     >
                                         <x-far-pen-to-square class="fill-current h-5 w-5"/>
                                     </button>
-                                    <button class="hover:text-primary" wire:click="confirmDelete({{$vehiculo->id}})">
-                                        <x-far-trash-can class="fill-current h-5 w-5"/>
-                                    </button>
+                                    @if(!$vehiculo->activo)
+                                        <button class="hover:text-primary"
+                                                wire:click="confirmDelete({{$vehiculo->id}})">
+                                            <x-far-trash-can class="fill-current h-5 w-5"/>
+                                        </button>
+                                    @endif
                                 </div>
                             </td>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
+
+                <div class="mt-6">
+                    {{ $vehiculos->links('vendor.pagination.tailwind') }}
+                </div>
+
             @else
                 <h2 class="py-4 text-center text-3xl dark:text-gray text-graydark">
                     No hay vehiculos

@@ -44,13 +44,16 @@ class VehiculoEdit extends Component
     #[On('editVehiculo')]
     public function editVehiculo($vehiculoId)
     {
+        $this->vehiculo = Vehiculo::findOrfail($vehiculoId);
         $this->categorias = Categoria::select('id', 'nombre')->get();
         $this->modelos = Modelo::select('id', 'nombre')->get();
-        $this->placas = Placa::select('id', 'placa')->get();
+        $this->placa_id = $this->vehiculo->placa_id;
+        $this->placas = Placa::select('id', 'placa')->get()->filter(function ($placa){
+            return !Vehiculo::where('placa_id', $placa->id)->exists() || $placa->id == $this->placa_id;
+        });
         $this->vehiculo = Vehiculo::findOrfail($vehiculoId);
         $this->marca = $this->vehiculo->marca;
         $this->modelo_id = $this->vehiculo->modelo_id;
-        $this->placa_id = $this->vehiculo->placa_id;
         $this->precio_dia = $this->vehiculo->precio_dia;
         $this->categoria_id = $this->vehiculo->categoria_id;
         $this->foto = $this->vehiculo->foto;

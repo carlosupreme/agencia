@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Storage;
 
 class Vehiculo extends Model
 {
+
+    use HasFactory;
     protected $fillable = ['marca', 'modelo_id', 'placa_id', 'categoria_id', 'foto', 'precio_dia', 'activo'];
 
     protected $appends = [

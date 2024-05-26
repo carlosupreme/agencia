@@ -4,10 +4,10 @@
     <div
         class="flex flex-grow items-center justify-between px-4 py-4 shadow-2 md:px-6 2xl:px-11"
     >
-        <div class="flex items-center gap-2 sm:gap-4 lg:hidden">
+        <div class="flex items-center gap-2 sm:gap-4 xl:hidden">
             <!-- Hamburger Toggle BTN -->
             <button
-                class="z-99999 block rounded-sm border border-stroke bg-white p-1.5 shadow-sm dark:border-strokedark dark:bg-boxdark lg:hidden"
+                class="z-99999 block rounded-sm border border-stroke bg-white p-1.5 shadow-sm dark:border-strokedark dark:bg-boxdark xl:hidden"
                 @click.stop="sidebarToggle = !sidebarToggle"
             >
         <span class="relative block h-5.5 w-5.5 cursor-pointer">
@@ -41,7 +41,7 @@
 
         </div>
         <div class="hidden sm:block">
-            
+
         </div>
 
         <div class="flex items-center gap-3 2xsm:gap-7">

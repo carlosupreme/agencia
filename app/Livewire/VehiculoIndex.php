@@ -3,12 +3,13 @@
 namespace App\Livewire;
 
 use App\Models\Vehiculo;
-use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\Attributes\On;
+use Livewire\WithPagination;
 
 class VehiculoIndex extends Component
 {
+    use WithPagination;
     public $search;
     public $queryString = ['search' => ['except' => '', 'as' => 's']];
 
@@ -49,7 +50,7 @@ class VehiculoIndex extends Component
             })
             ->with('categoria', 'modelo', 'placa')
             ->latest('id')
-            ->get();
+            ->paginate(10);
 
         return view('livewire.vehiculo-index', compact('vehiculos'));
     }

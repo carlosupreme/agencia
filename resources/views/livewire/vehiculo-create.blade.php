@@ -16,7 +16,7 @@
 
                 <div class="col-span-2 md:col-span-1">
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-2"
-                           for="modelo">Modelo</label>
+                           for="modelo">Nombre</label>
                     <div class="flex flex-col gap-2">
                         <select
                             wire:model="modelo_id"
@@ -25,7 +25,7 @@
                             :class="isOptionSelected && 'text-black dark:text-white'"
                             @change="isOptionSelected = true"
                         >
-                            <option selected disabled value="" class="text-body">Selecciona un modelo</option>
+                            <option selected disabled value="" class="text-body">Selecciona un nombre</option>
                             @foreach($modelos as $modelo)
                                 <option value="{{$modelo->id}}">{{$modelo->nombre}}</option>
                             @endforeach

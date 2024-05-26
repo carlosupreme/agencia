@@ -1,14 +1,14 @@
 <aside
     :class="sidebarToggle ? 'translate-x-0' : '-translate-x-full'"
-    class="absolute left-0 top-0 z-999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-black duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0"
+    class="absolute left-0 top-0 z-999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-black duration-300 ease-linear dark:bg-boxdark xl:static xl:translate-x-0"
     @click.outside="sidebarToggle = false"
 >
     <!-- SIDEBAR HEADER -->
-    <div class="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
+    <div class="flex items-center justify-between gap-2 px-6 py-5.5 xl:py-6.5">
         <img src="{{ asset('logo.png') }}" alt="Logo"/>
 
         <button
-            class="block lg:hidden"
+            class="block xl:hidden"
             @click.stop="sidebarToggle = !sidebarToggle"
         >
             <svg
@@ -32,7 +32,7 @@
         class="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear"
     >
         <!-- Sidebar Menu -->
-        <nav class="mt-5 px-4 py-4 lg:mt-9 lg:px-6">
+        <nav class="mt-5 px-4 py-4 xl:mt-9 xl:px-6">
             <!-- Menu Group -->
             <div>
                 <h3 class="mb-4 ml-4 text-sm font-medium text-bodydark2">MENU</h3>

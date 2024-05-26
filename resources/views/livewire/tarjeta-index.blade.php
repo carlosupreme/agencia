@@ -9,7 +9,7 @@
                         <p class="font-medium tracking-widest text-gray-800 dark:text-gray-200">{{$tarjeta->titular}}</p>
                         <p class="mt-2 font-medium tracking-more-wider text-gray-800 dark:text-gray-200"> {{ substr_replace($tarjeta->numero, '**** **** **** ', 0, 12) }}</p>
                     </div>
-                    <img class="w-14 h-14" src="https://i.imgur.com/bbPHJVe.png" alt="Bank Logo">
+                    <img class="w-14 h-14" src="{{asset('mastercard.png')}}" alt="Bank Logo">
                 </div>
 
                 <p class="font-medium tracking-widest text-sm text-gray-800 dark:text-gray-200 first-letter:uppercase">{{$tarjeta->tipo}}</p>
