@@ -32,7 +32,7 @@
                                 alquilado: {{ \Carbon\Carbon::parse($vehiculo->fecha_inicio)->diffInDays(\Carbon\Carbon::parse($vehiculo->fecha_fin)) }}</p>
                         </div>
 
-                        <x-button class="w-full bg-blue-600" wire:click="modalVer({{$vehiculo->id}})">
+                        <x-button class="w-full bg-blue-600" wire:click="modalVer({{$vehiculo->vehiculo->id}})">
                             Ver más
                         </x-button>
                     </div>
