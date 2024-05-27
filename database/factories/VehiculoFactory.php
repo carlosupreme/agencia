@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Categoria;
+use App\Models\Marca;
 use App\Models\Modelo;
 use App\Models\Placa;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -20,7 +21,7 @@ class VehiculoFactory extends Factory
     public function definition(): array
     {
         return [
-            'marca' => fake('es')->unique()->word,
+            'marca_id' => Marca::factory()->create()->id,
             'modelo_id' => Modelo::factory()->create()->id,
             'placa_id' => Placa::factory()->create()->id,
             'categoria_id' => Categoria::all()->random()->id,

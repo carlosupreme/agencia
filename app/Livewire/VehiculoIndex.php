@@ -10,6 +10,7 @@ use Livewire\WithPagination;
 class VehiculoIndex extends Component
 {
     use WithPagination;
+
     public $search;
     public $queryString = ['search' => ['except' => '', 'as' => 's']];
 
@@ -38,7 +39,10 @@ class VehiculoIndex extends Component
     #[On('vehiculoUpdated')]
     public function render()
     {
-        $vehiculos = Vehiculo::matching($this->search, 'marca', 'id')
+        $vehiculos = Vehiculo::matching($this->search, 'id')
+            ->orwhereHas('marca', function ($query) {
+                $query->where('nombre', 'like', "%$this->search%");
+            })
             ->orwhereHas('categoria', function ($query) {
                 $query->where('nombre', 'like', "%$this->search%");
             })
@@ -48,7 +52,7 @@ class VehiculoIndex extends Component
             ->orwhereHas('placa', function ($query) {
                 $query->where('placa', 'like', "%$this->search%");
             })
-            ->with('categoria', 'modelo', 'placa')
+            ->with('categoria', 'modelo', 'placa', 'marca')
             ->latest('id')
             ->paginate(10);
 

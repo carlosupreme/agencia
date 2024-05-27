@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('categoria_id')->constrained()->cascadeOnDelete();
             $table->foreignId('modelo_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('placa_id')->nullable()->constrained()->nullOnDelete();
-            $table->string('marca');
+            $table->foreignId('marca_id')->nullable()->constrained()->nullOnDelete();
             $table->decimal('precio_dia');
             $table->timestamps();
         });

@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Categoria;
+use App\Models\Marca;
 use App\Models\Modelo;
 use App\Models\Placa;
 use App\Models\Vehiculo;
@@ -17,7 +18,7 @@ class VehiculoCreate extends Component
     use WithFileUploads;
 
     #[Validate('required')]
-    public $marca = '';
+    public $marca_id = '';
 
     #[Validate('required')]
     public $modelo_id = '';
@@ -37,6 +38,7 @@ class VehiculoCreate extends Component
     public $categorias = [];
     public $placas = [];
     public $modelos = [];
+    public $marcas = [];
 
     public $open = false;
 
@@ -44,6 +46,7 @@ class VehiculoCreate extends Component
     {
         $this->categorias = Categoria::select('id', 'nombre')->get();
         $this->modelos = Modelo::select('id', 'nombre')->get();
+        $this->marcas = Marca::select('id', 'nombre')->get();
         $this->placas = Placa::select('id', 'placa')->get()->filter(function ($placa) {
             return !Vehiculo::where('placa_id', $placa->id)->exists();
         });
@@ -55,7 +58,7 @@ class VehiculoCreate extends Component
         $this->validate();
 
         $vehiculo = Vehiculo::create([
-            'marca' => $this->marca,
+            'marca_id' => $this->marca_id,
             'modelo_id' => $this->modelo_id,
             'placa_id' => $this->placa_id,
             'precio_dia' => $this->precio_dia,

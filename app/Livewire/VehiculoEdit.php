@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Categoria;
+use App\Models\Marca;
 use App\Models\Modelo;
 use App\Models\Placa;
 use App\Models\Vehiculo;
@@ -21,9 +22,10 @@ class VehiculoEdit extends Component
     public $categorias = [];
     public $placas = [];
     public $modelos = [];
+    public $marcas = [];
 
     #[Validate('required')]
-    public $marca = '';
+    public $marca_id = '';
 
     #[Validate('required')]
     public $modelo_id = '';
@@ -34,25 +36,33 @@ class VehiculoEdit extends Component
     #[Validate('required|numeric')]
     public $precio_dia = '';
 
-    #[Validate('required|exists:categorias,id')]
+    #[Validate('required')]
     public $categoria_id = '';
     public $foto;
 
     #[Validate('image|nullable')]
     public $newFoto;
 
+    public function mount()
+    {
+        $this->categorias = Categoria::all();
+        $this->marcas = Marca::all();
+        $this->modelos = Modelo::all();
+        $this->placas = Placa::all();
+    }
+
     #[On('editVehiculo')]
     public function editVehiculo($vehiculoId)
     {
         $this->vehiculo = Vehiculo::findOrfail($vehiculoId);
-        $this->categorias = Categoria::select('id', 'nombre')->get();
-        $this->modelos = Modelo::select('id', 'nombre')->get();
+        $this->categorias = Categoria::all();
+        $this->marcas = Marca::all();
+        $this->modelos = Modelo::all();
         $this->placa_id = $this->vehiculo->placa_id;
-        $this->placas = Placa::select('id', 'placa')->get()->filter(function ($placa){
+        $this->placas = Placa::all()->filter(function ($placa) {
             return !Vehiculo::where('placa_id', $placa->id)->exists() || $placa->id == $this->placa_id;
         });
-        $this->vehiculo = Vehiculo::findOrfail($vehiculoId);
-        $this->marca = $this->vehiculo->marca;
+        $this->marca_id = $this->vehiculo->marca_id;
         $this->modelo_id = $this->vehiculo->modelo_id;
         $this->precio_dia = $this->vehiculo->precio_dia;
         $this->categoria_id = $this->vehiculo->categoria_id;
@@ -65,7 +75,7 @@ class VehiculoEdit extends Component
         $this->validate();
 
         $this->vehiculo->update([
-            'marca' => $this->marca,
+            'marca_id' => $this->marca_id,
             'modelo_id' => $this->modelo_id,
             'placa_id' => $this->placa_id,
             'precio_dia' => $this->precio_dia,

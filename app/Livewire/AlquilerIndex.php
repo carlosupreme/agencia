@@ -9,6 +9,7 @@ use Livewire\WithPagination;
 class AlquilerIndex extends Component
 {
     use WithPagination;
+
     public $perPage = 4;
     public $search;
     public $queryString = ['search' => ['except' => '', 'as' => 's']];
@@ -33,7 +34,9 @@ class AlquilerIndex extends Component
         $tieneTarjetas = auth()->user()->tarjetas->count() > 0;
         checkFechaFinVehiculos();
 
-        $vehiculos = Vehiculo::matching($this->search, 'marca')
+        $vehiculos = Vehiculo::whereHas('marca', function ($query) {
+            $query->where('nombre', 'like', "%$this->search%");
+        })
             ->orwhereHas('categoria', function ($query) {
                 $query->where('nombre', 'like', "%$this->search%");
             })

@@ -48,13 +48,16 @@
                             <td
                                 class="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark"
                             >
-                                <h5 class="font-medium text-black dark:text-white">{{$vehiculo->marca}} {{$vehiculo->modelo->nombre}} {{$vehiculo->placa->placa}}</h5>
+                                <h5 class="font-medium text-black dark:text-white">
+                                    Marca: {{$vehiculo->marca?->nombre}}<br>
+                                    Nombre: {{$vehiculo->modelo?->nombre}}<br>
+                                    Placas: {{$vehiculo->placa?->placa}}</h5>
                                 <p class="text-xs text-graydark dark:text-gray ">ID:{{$vehiculo->id}}</p>
                             </td>
                             <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                                 <img
                                     src="{{$vehiculo->photo_url}}"
-                                    alt="Foto de {{$vehiculo->marca}} {{$vehiculo->modelo->nombre}}"
+                                    alt="Foto de {{$vehiculo->marca?->nombre}} {{$vehiculo->modelo?->nombre}}"
                                     class="w-16 h-16 object-contain rounded-md"
                                 >
                             </td>
@@ -67,7 +70,7 @@
                                 <p class="text-center text-black dark:text-white flex items-center gap-2">
                                     <x-fas-tag class="h-3 w-3"/>
                                     <span class="first-letter:uppercase">
-                                    {{$vehiculo->categoria->nombre}}
+                                    {{$vehiculo->categoria?->nombre}}
                                     </span>
                                 </p>
                             </td>

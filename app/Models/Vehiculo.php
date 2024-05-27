@@ -12,11 +12,18 @@ class Vehiculo extends Model
 {
 
     use HasFactory;
-    protected $fillable = ['marca', 'modelo_id', 'placa_id', 'categoria_id', 'foto', 'precio_dia', 'activo'];
+    protected $fillable = ['marca_id', 'modelo_id', 'placa_id', 'categoria_id', 'foto', 'precio_dia', 'activo'];
 
     protected $appends = [
         'photo_url',
     ];
+
+
+    public function marca()
+    {
+        return $this->belongsTo(Marca::class);
+    }
+
 
     public function placa()
     {

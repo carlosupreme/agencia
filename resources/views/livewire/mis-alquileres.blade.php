@@ -4,7 +4,7 @@
         @foreach($vehiculos as $vehiculo)
             <div class="w-full sm:w-1/2 lg:w-1/4 p-2">
                 <div class="bg-white dark:bg-black rounded-lg shadow-md overflow-hidden flex flex-col">
-                    <div class="relative cursor-pointer w-full h-48">
+                    <div class="relative w-full h-48">
                         <img class="absolute inset-0 w-full h-full object-cover"
                              src="{{$vehiculo->vehiculo->photo_url}}"
                              alt="Foto de {{$vehiculo->vehiculo->modelo->nombre}}"/>
@@ -32,9 +32,7 @@
                                 alquilado: {{ \Carbon\Carbon::parse($vehiculo->fecha_inicio)->diffInDays(\Carbon\Carbon::parse($vehiculo->fecha_fin)) }}</p>
                         </div>
 
-
-
-                        <x-button wire:click="modalVer({{$vehiculo->id}})">
+                        <x-button class="w-full bg-blue-600" wire:click="modalVer({{$vehiculo->id}})">
                             Ver más
                         </x-button>
                     </div>

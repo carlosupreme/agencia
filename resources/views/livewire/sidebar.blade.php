@@ -57,10 +57,10 @@
                     <!-- Menu Item Tarjetas -->
                     <li>
                         <a
-                        @class([
-                                    'group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4',
-                                    'bg-graydark dark:bg-meta-4' => request()->routeIs('tarjeta.index')
-                                ])
+                            @class([
+                                        'group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4',
+                                        'bg-graydark dark:bg-meta-4' => request()->routeIs('tarjeta.index')
+                                    ])
                             href="{{route('tarjeta.index')}}"
                         >
                             <x-far-credit-card class="fill-current h-5 w-5"/>
@@ -72,11 +72,11 @@
                     <!-- Menu Item alquiler -->
                     <li>
                         <a
-                        href="{{route('alquiler.index')}}"
-                        @class([
-                                'group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4',
-                                'bg-graydark dark:bg-meta-4' => request()->routeIs('alquiler.index')
-                        ])
+                            href="{{route('alquiler.index')}}"
+                            @class([
+                                    'group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4',
+                                    'bg-graydark dark:bg-meta-4' => request()->routeIs('alquiler.index')
+                            ])
                         >
                             <x-fas-money-check-dollar class="fill-current h-5 w-5"/>
                             Alquilar
@@ -88,11 +88,11 @@
                     @role('admin')
                     <li>
                         <a
-                        href="{{route('vehiculo.index')}}"
-                        @class([
-                            'group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4',
-                            'bg-graydark dark:bg-meta-4' => request()->routeIs('vehiculo.index')
-                        ])
+                            href="{{route('vehiculo.index')}}"
+                            @class([
+                                'group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4',
+                                'bg-graydark dark:bg-meta-4' => request()->routeIs('vehiculo.index')
+                            ])
                         >
                             <x-fas-car class="fill-current h-5 w-5"/>
                             Autos
@@ -104,11 +104,11 @@
                     <!-- Menu Item categorias -->
                     <li>
                         <a
-                        href="{{route('categoria.index')}}"
-                        @class([
-                            'group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4',
-                            'bg-graydark dark:bg-meta-4' => request()->routeIs('categoria.index')
-                        ])
+                            href="{{route('categoria.index')}}"
+                            @class([
+                                'group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4',
+                                'bg-graydark dark:bg-meta-4' => request()->routeIs('categoria.index')
+                            ])
                         >
                             <x-fas-tags class="fill-current h-5 w-5"/>
                             Categorias
@@ -157,12 +157,27 @@
                                 'bg-graydark dark:bg-meta-4' => request()->routeIs('placa.index')
                             ])
                         >
-                            <x-fas-tarp  class="fill-current h-5 w-5"/>
+                            <x-fas-tarp class="fill-current h-5 w-5"/>
                             Placas
                         </a>
                     </li>
-                    @endrole
                     <!-- Placas -->
+
+                    <!-- Marcas -->
+                    <li>
+                        <a
+                            href="{{route('marca.index')}}"
+                            @class([
+                                'group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4',
+                                'bg-graydark dark:bg-meta-4' => request()->routeIs('marca.index')
+                            ])
+                        >
+                            <x-tabler-brand-toyota class="h-5 w-5"/>
+                            Marcas
+                        </a>
+                    </li>
+                    @endrole
+                    <!-- Marcas -->
                 </ul>
             </div>
         </nav>

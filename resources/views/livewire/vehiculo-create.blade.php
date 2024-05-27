@@ -10,8 +10,20 @@
                 <div class="col-span-2 md:col-span-1">
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-2"
                            for="marca">Marca</label>
-                    <x-input class="w-full" wire:model="marca" type="text" name="marca" id="marca"/>
-                    <x-input-error for="marca"/>
+                    <div class="flex flex-col gap-2">
+                        <select
+                            wire:model="marca_id"
+                            id="marca"
+                            class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
+                        >
+                            <option selected disabled value="" class="text-body">Selecciona una marca</option>
+                            @foreach($marcas as $marca)
+                                <option value="{{$marca->id}}">{{$marca->nombre}}</option>
+                            @endforeach
+                        </select>
+
+                        <x-input-error for="marca_id"/>
+                    </div>
                 </div>
 
                 <div class="col-span-2 md:col-span-1">
